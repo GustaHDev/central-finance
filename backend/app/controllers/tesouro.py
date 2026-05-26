@@ -22,8 +22,6 @@ async def buscar_por_id(db: AsyncSession, id: int) -> TituloTesouro:
 async def buscar_por_nome(db: AsyncSession, nome: str) -> list[TituloTesouro]:
     return await crud_tesouro_direto.get_by_nome(db, nome)
 
-
-async def deletar(db: AsyncSession, id: int) -> None:
-    deletado = await crud_tesouro_direto.delete_by_id(db, id)
-    if not deletado:
-        raise ValueError(f"Título com id {id} não encontrado")
+def deletar_tesouro(id):
+    banco.delete(id)
+    return True
